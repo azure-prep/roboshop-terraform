@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    null = {
+      source  = "hashicorp/null"
+      version = "3.2.4"
+    }
+  }
+}
 resource "azurerm_public_ip" "public-ip" {
   name                = "${var.component}-public-ip"
   location              = var.location
@@ -47,6 +55,9 @@ resource "azurerm_virtual_machine" "vm" {
   os_profile_linux_config {
     disable_password_authentication = false
   }
+}
+
+resource "null_resource" "ansible" {
   provisioner "remote-exec" {
     inline = [
       "sudo apt-get update",
