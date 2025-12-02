@@ -65,7 +65,7 @@ resource "null_resource" "ansible" {
       "sudo systemctl start nginx"
     ]
     connection {
-      type     = "password"
+      type     = "ssh"
       user     = "azuser"
       password = "Devops@12345"
       host     =  azurerm_network_interface.privateip.private_ip_address
