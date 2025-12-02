@@ -60,9 +60,7 @@ resource "azurerm_virtual_machine" "vm" {
 resource "null_resource" "ansible" {
   provisioner "remote-exec" {
     inline = [
-      "sudo apt-get update",
-      "sudo apt-get install -y nginx",
-      "sudo systemctl start nginx"
+      "ls"
     ]
     connection {
       type     = "ssh"
