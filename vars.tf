@@ -1,4 +1,3 @@
-variable "component" {}
 variable "image_id" {}
 variable "location" {}
 variable resource_group_name {}
