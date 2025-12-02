@@ -47,6 +47,19 @@ resource "azurerm_virtual_machine" "vm" {
   os_profile_linux_config {
     disable_password_authentication = false
   }
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt-get update",
+      "sudo apt-get install -y nginx",
+      "sudo systemctl start nginx"
+    ]
+    connection {
+      type     = "password"
+      user     = "azuser"
+      password = "Devops@12345"
+      host     =  azurerm_network_interface.privateip.private_ip_address
+    }
+  }
 }
 
 resource "azurerm_dns_a_record" "example" {
