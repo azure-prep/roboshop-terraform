@@ -15,7 +15,7 @@ resource "azurerm_public_ip" "public-ip" {
 
 resource "azurerm_network_interface" "privateip" {
   name                = "${var.component}-dev"
-  location              = var.location
+  location              = data.azurerm_resource_group.rg.location
   resource_group_name   = var.resource_group_name
   ip_configuration {
     name                          = "${var.component}-dev"
