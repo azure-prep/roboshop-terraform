@@ -82,7 +82,7 @@ resource "azurerm_dns_a_record" "example" {
   records             = [azurerm_network_interface.privateip.private_ip_address]
 }
 
-resource "azurerm_subnet_network_security_group_association" "example" {
-  subnet_id                 = var.subnet_id
+resource "azurerm_network_interface_security_group_association" "example_nsg_association" {
+  network_interface_id      = azurerm_network_interface.privateip.id
   network_security_group_id = var.network_security_group_id
 }
