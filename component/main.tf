@@ -60,7 +60,8 @@ resource "azurerm_virtual_machine" "vm" {
 resource "null_resource" "ansible" {
   provisioner "remote-exec" {
     inline = [
-      "ls"
+      "sudo dnf install python3.12 python3.12-pip -y",
+      "sudo pip3.12 install ansible"
     ]
     connection {
       type     = "ssh"
