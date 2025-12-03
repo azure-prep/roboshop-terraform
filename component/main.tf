@@ -33,7 +33,7 @@ resource "azurerm_virtual_machine" "vm" {
   vm_size               = "Standard_B2s"
 
   # Uncomment this line to delete the OS disk automatically when deleting the VM
-  # delete_os_disk_on_termination = true
+  delete_os_disk_on_termination = true
 
   # Uncomment this line to delete the data disks automatically when deleting the VM
   # delete_data_disks_on_termination = true
@@ -55,6 +55,7 @@ resource "azurerm_virtual_machine" "vm" {
   os_profile_linux_config {
     disable_password_authentication = false
   }
+
 }
 
 resource "null_resource" "ansible" {
