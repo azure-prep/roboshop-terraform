@@ -5,5 +5,5 @@ apply:
 	terraform apply -auto-approve -var-file environment/dev/main.tfvars
 destroy:
 	git pull
-	terraform init
-	terraform destroy -auto-approve
+	terraform init  -backend-config=environment/dev/terraform-state.tfvars
+	terraform destroy -auto-approve -var-file environment/dev/main.tfvars
