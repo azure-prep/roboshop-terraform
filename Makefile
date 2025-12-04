@@ -1,7 +1,8 @@
 apply:
 	git pull
-	terraform init
-	terraform apply -auto-approve -var-file .auto.tfvars
+	rm -rf .terraform
+	terraform init -backend-config="./modules/environment/terraform-state.conf"
+	terraform apply -auto-approve -var-file ./modules/environment/dev/main.tfvars
 destroy:
 	git pull
 	terraform init
