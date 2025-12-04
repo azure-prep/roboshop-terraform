@@ -5,6 +5,7 @@ variable zone_name {}
 variable "subnet_id" {}
 variable "network_security_group_id" {
 }
+variable "env" {}
 
 variable "databases" {
   default = {
