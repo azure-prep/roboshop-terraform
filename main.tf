@@ -3,7 +3,7 @@ module "resource-rg" {
   source = "./modules/resource-group"
   env    = var.env
   location = var.rg_name["ukwest"].rg_location
-  name  = "roboshop-${each.key}-${env}"
+  name  = "roboshop-${each.key}-${var.env}"
 }
 
 # module "databases" {
