@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "roboshop-rg" {
-  name     = var.rg_name
-  location = var.rg_location
+  name     = var.name
+  location = var.location
 }
 
 output "rg_name" {

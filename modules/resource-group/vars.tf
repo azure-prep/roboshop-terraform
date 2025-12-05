@@ -1,3 +1,3 @@
 variable "env" {}
-variable "rg_location" {}
-variable "rg_name" {}
+variable "location" {}
+variable "name" {}

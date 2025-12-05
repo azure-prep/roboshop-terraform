@@ -2,8 +2,8 @@ module "resource-rg" {
   for_each = var.rg_name
   source = "./modules/resource-group"
   env    = var.env
-  rg_location = var.rg_name["ukwest"].rg_location
-  rg_name  = "roboshop-${each.key}-${env}"
+  location = var.rg_name["ukwest"].rg_location
+  name  = "roboshop-${each.key}-${env}"
 }
 
 # module "databases" {
