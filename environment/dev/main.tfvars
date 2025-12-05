@@ -4,10 +4,18 @@ zone_name="azdevopsb1.online"
 network_security_group_id="/subscriptions/8378289b-756a-4d87-88be-37638bd44229/resourceGroups/rg1/providers/Microsoft.Network/networkSecurityGroups/project-allow-all-ports"
 env = "dev"
 databases = {
-  mongodb = {},
-  rabbitmq = {},
-  mysql = {},
-  redis = {}
+  mongodb = {
+    rgname  = "ukwest"
+  },
+  rabbitmq = {
+    rgname  = "ukwest"
+  },
+  mysql = {
+    rgname  = "ukwest"
+  },
+  redis = {
+    rgname  = "ukwest"
+  }
 }
 application = {
   cart = {},
