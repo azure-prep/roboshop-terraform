@@ -6,13 +6,17 @@ module "resource-rg" {
   name  = "roboshop-${each.key}-${var.env}"
 }
 
+output "rg_name" {
+  value = module.resource-rg.rg_name
+}
+
 # module "databases" {
 #   for_each            = var.databases
 #   source              = "modules/vm"
 #   component           = each.key
 #   image_id            = var.image_id
-#   location            = module.resource-rg[each.key["ukwest"]].rg_location
-#   resource_group_name = module.resource-rg[each.key["ukwest"]].rg_name
+#   location            = module.resource-rg.rg_location
+#   resource_group_name = module.resource-rg.rg_name
 #   subnet_id           = var.subnet_id
 #   zone_name           = var.zone_name
 #   network_security_group_id = var.network_security_group_id
@@ -25,7 +29,7 @@ module "resource-rg" {
 #   component           = each.key
 #   image_id            = var.image_id
 #   location            = module.resource-rg[each.key["ukwest"]].rg_location
-#   resource_group_name = var.resource_group_name
+#   resource_group_name = module.resource-rg[each.key["ukwest"]].rg_name
 #   subnet_id           = var.subnet_id
 #   zone_name           = var.zone_name
 #   network_security_group_id = var.network_security_group_id
