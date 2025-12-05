@@ -6,7 +6,7 @@ databases = {
   mysql = {},
   redis = {}
 }
-applications = {
+application = {
   cart = {},
   catalogue = {},
   user = {},
