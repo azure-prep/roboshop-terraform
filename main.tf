@@ -9,7 +9,7 @@ module "resource-rg" {
 
 module "databases" {
   for_each            = var.databases
-  source              = "modules/vm"
+  source              = "./modules/vm"
   component           = each.key
   image_id            = var.image_id
   location            = module.resource-rg[each.value[rgname]].rg_location
