@@ -2,7 +2,7 @@ module "resource-rg" {
   for_each = var.rg_name
   source = "./modules/resource-group"
   env    = var.env
-  location = each.key["rg_location"]
+  location = each.value["rg_location"]
   name  = "roboshop-${each.key}-${var.env}"
 }
 
