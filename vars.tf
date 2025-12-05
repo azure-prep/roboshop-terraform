@@ -6,22 +6,12 @@ variable "subnet_id" {}
 variable "network_security_group_id" {
 }
 variable "env" {}
-
+variable "rg_name" {
+  default = ""
+}
 variable "databases" {
-  default = {
-    mongodb = {},
-    rabbitmq = {},
-    mysql = {},
-    redis = {}
-  }
 }
 
 variable "application" {
-  default = {
-    cart = {},
-    catalogue = {},
-    user = {},
-    payment = {},
-    shipping = {}
-  }
 }
+
