@@ -19,6 +19,7 @@ module "databases" {
   network_security_group_id = var.network_security_group_id
   token = var.token
   spot = "1"
+  env = var.env
 }
 
 module "application" {
@@ -34,5 +35,6 @@ module "application" {
   network_security_group_id = var.network_security_group_id
   token = var.token
   spot = "1"
+  env = var.env
 }
 

@@ -10,4 +10,4 @@ variable "zone_name" {}
 variable "network_security_group_id" {}
 variable "token" {}
 variable "spot" {}
-
+variable "env" {}
