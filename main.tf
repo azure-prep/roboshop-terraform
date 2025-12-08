@@ -18,6 +18,7 @@ module "databases" {
   zone_name           = var.zone_name
   network_security_group_id = var.network_security_group_id
   token = var.token
+  spot = "1"
 }
 
 module "application" {
@@ -32,5 +33,6 @@ module "application" {
   zone_name           = var.zone_name
   network_security_group_id = var.network_security_group_id
   token = var.token
+  spot = "1"
 }
 

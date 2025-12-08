@@ -59,6 +59,30 @@ resource "azurerm_virtual_machine" "vm" {
 
 }
 
+resource "azurerm_linux_virtual_machine" "spot_vm" {
+  count                 = var.spot? 1 : 0
+  name                  = "${var.component}-dev"
+  location              = var.location
+  resource_group_name   = var.resource_group_name
+  network_interface_ids = [azurerm_network_interface.privateip.id]
+  size                = "Standard_D2s_v3"
+  admin_username      = "azuser"
+  admin_password      = "DevOps@123"
+  disable_password_authentication = false
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_id = var.image_id
+
+  # Spot VM specific configurations
+  priority        = "Spot"
+  eviction_policy = "Deallocate"
+  max_bid_price   = -1 # Optional: Set your maximum bid price in USD
+}
+
 resource "null_resource" "ansible" {
   provisioner "remote-exec" {
     inline = [
