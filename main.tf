@@ -23,7 +23,7 @@ module "databases" {
 module "application" {
   for_each    = var.application
   depends_on  = [module.databases]
-  source      = "modules/vm"
+  source      = "./modules/vm"
   component           = each.key
   image_id            = var.image_id
   location            = module.resource-rg[each.key["ukwest"]].rg_location
