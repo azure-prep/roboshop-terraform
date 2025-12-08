@@ -50,8 +50,8 @@ resource "azurerm_virtual_machine" "vm" {
   }
   os_profile {
     computer_name  = "${var.component}-dev"
-    admin_username = "azuser"
-    admin_password = "Devops@12345"
+    admin_username = data.vault_generic_secret.secret["ssh_user"]
+    admin_password = data.vault_generic_secret.secret["ssh_password"]
   }
   os_profile_linux_config {
     disable_password_authentication = false
@@ -66,8 +66,8 @@ resource "azurerm_linux_virtual_machine" "spot_vm" {
   resource_group_name   = var.resource_group_name
   network_interface_ids = [azurerm_network_interface.privateip.id]
   size                = "Standard_D2s_v3"
-  admin_username      = "azuser"
-  admin_password      = "DevOps@123"
+  admin_username      = data.vault_generic_secret.secret["ssh_user"]
+  admin_password      = data.vault_generic_secret.secret["ssh_password"]
   disable_password_authentication = false
 
   os_disk {
@@ -92,8 +92,8 @@ resource "null_resource" "ansible" {
     ]
     connection {
       type     = "ssh"
-      user     = "azuser"
-      password = "Devops@12345"
+      user     = data.vault_generic_secret.secret["user"]
+      password = data.vault_generic_secret.secret["user"]
       host     =  azurerm_network_interface.privateip.private_ip_address
     }
   }
