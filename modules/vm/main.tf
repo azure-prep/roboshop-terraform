@@ -63,7 +63,7 @@ resource "null_resource" "ansible" {
     inline = [
       "sudo dnf install python3.12 python3.12-pip -y",
       "sudo pip3.12 install ansible",
-      "ansible-pull -i localhost, -U https://github.com/azure-prep/roboshop-ansible.git -e app_name=${var.component} roboshop.yml"
+      "ansible-pull -i localhost, -U https://github.com/azure-prep/roboshop-ansible.git -e app_name=${var.component} -e app_name=${var.token} roboshop.yml"
     ]
     connection {
       type     = "ssh"

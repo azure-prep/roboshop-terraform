@@ -8,4 +8,5 @@ variable "subnet_id" {}
 variable "image_id" {}
 variable "zone_name" {}
 variable "network_security_group_id" {}
+variable "token" {}
 
