@@ -26,8 +26,8 @@ module "application" {
   source      = "./modules/vm"
   component           = each.key
   image_id            = var.image_id
-  location            = module.resource-rg[each.key["ukwest"]].rg_location
-  resource_group_name = module.resource-rg[each.key["ukwest"]].rg_name
+  location            = module.resource-rg[each.value["ukwest"]].rg_location
+  resource_group_name = module.resource-rg[each.value["ukwest"]].rg_name
   subnet_id           = var.subnet_id
   zone_name           = var.zone_name
   network_security_group_id = var.network_security_group_id

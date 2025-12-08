@@ -26,6 +26,7 @@ resource "azurerm_network_interface" "privateip" {
 }
 
 resource "azurerm_virtual_machine" "vm" {
+  count                 = var.spot? 0 : 1
   name                  = "${var.component}-dev"
   location              = var.location
   resource_group_name   = var.resource_group_name
