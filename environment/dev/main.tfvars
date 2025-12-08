@@ -18,11 +18,21 @@ databases = {
   }
 }
 application = {
-  cart = {},
-  catalogue = {},
-  user = {},
-  payment = {},
-  shipping = {}
+  cart = {
+    rgname  = "ukwest"
+  },
+  catalogue = {
+    rgname  = "ukwest"
+  },
+  user = {
+    rgname  = "ukwest"
+  },
+  payment = {
+    rgname  = "ukwest"
+  },
+  shipping = {
+    rgname  = "ukwest"
+  }
 }
 rg_name = {
   ukwest = {
