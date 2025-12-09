@@ -84,6 +84,9 @@ resource "azurerm_virtual_machine" "vm" {
 # }
 
 resource "null_resource" "ansible" {
+  triggers = {
+    timestamp = timestamp()
+  }
   provisioner "remote-exec" {
     inline = [
       "sudo dnf install python3.12 python3.12-pip -y",
