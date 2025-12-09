@@ -7,11 +7,32 @@ databases = {
   mongodb = {
     rgname  = "ukwest"
   },
+  rabbitmq = {
+    rgname  = "ukwest"
+  },
+  mysql = {
+    rgname  = "ukwest"
+  },
+  redis = {
+    rgname  = "ukwest"
+  }
 }
 application = {
+  cart = {
+    rgname  = "ukwest"
+  },
   catalogue = {
     rgname  = "ukwest"
   },
+  user = {
+    rgname  = "ukwest"
+  },
+  payment = {
+    rgname  = "ukwest"
+  },
+  shipping = {
+    rgname  = "ukwest"
+  }
 }
 rg_name = {
   ukwest = {
