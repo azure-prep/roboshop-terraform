@@ -7,24 +7,24 @@ module "resource-rg" {
 }
 
 
-module "databases" {
-  for_each            = var.databases
-  source              = "./modules/vm"
-  component           = each.key
-  image_id            = var.image_id
-  location            = module.resource-rg[each.value["rgname"]].rg_location
-  resource_group_name = module.resource-rg[each.value["rgname"]].rg_name
-  subnet_id           = var.subnet_id
-  zone_name           = var.zone_name
-  network_security_group_id = var.network_security_group_id
-  token = var.token
-  spot = "1"
-  env = var.env
-}
+# module "databases" {
+#   for_each            = var.databases
+#   source              = "./modules/vm"
+#   component           = each.key
+#   image_id            = var.image_id
+#   location            = module.resource-rg[each.value["rgname"]].rg_location
+#   resource_group_name = module.resource-rg[each.value["rgname"]].rg_name
+#   subnet_id           = var.subnet_id
+#   zone_name           = var.zone_name
+#   network_security_group_id = var.network_security_group_id
+#   token = var.token
+#   spot = "1"
+#   env = var.env
+# }
 
 module "application" {
   for_each    = var.application
-  depends_on  = [module.databases]
+  # depends_on  = [module.databases]
   source      = "./modules/vm"
   component           = each.key
   image_id            = var.image_id
