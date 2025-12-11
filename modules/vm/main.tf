@@ -25,63 +25,62 @@ resource "azurerm_network_interface" "privateip" {
   }
 }
 
-resource "azurerm_virtual_machine" "vm" {
-  # count                 = var.spot? 0 : 1
-  name                  = "${var.component}-dev"
-  location              = var.location
-  resource_group_name   = var.resource_group_name
-  network_interface_ids = [azurerm_network_interface.privateip.id]
-  vm_size               = "Standard_B2s"
-
-  # Uncomment this line to delete the OS disk automatically when deleting the VM
-  delete_os_disk_on_termination = true
-
-  # Uncomment this line to delete the data disks automatically when deleting the VM
-  # delete_data_disks_on_termination = true
-
-  storage_image_reference {
-    id                = var.image_id
-  }
-  storage_os_disk {
-    name              = "${var.component}-dev"
-    caching           = "ReadWrite"
-    create_option     = "FromImage"
-    managed_disk_type = "Standard_LRS"
-  }
-  os_profile {
-    computer_name  = "${var.component}-dev"
-    admin_username = data.vault_generic_secret.secret.data["ssh_user"]
-    admin_password = data.vault_generic_secret.secret.data["ssh_password"]
-  }
-  os_profile_linux_config {
-    disable_password_authentication = false
-  }
-
-}
-
-# resource "azurerm_linux_virtual_machine" "spot_vm" {
-#   count                 = var.spot? 1 : 0
+# resource "azurerm_virtual_machine" "vm" {
+#   # count                 = var.spot? 0 : 1
 #   name                  = "${var.component}-dev"
 #   location              = var.location
 #   resource_group_name   = var.resource_group_name
 #   network_interface_ids = [azurerm_network_interface.privateip.id]
-#   size                = "Standard_D2s_v3"
-#   admin_username      = data.vault_generic_secret.secret.data["ssh_user"]
-#   admin_password      = data.vault_generic_secret.secret.data["ssh_password"]
-#   disable_password_authentication = false
+#   vm_size               = "Standard_B2s"
 #
-#   os_disk {
-#     caching              = "ReadWrite"
-#     storage_account_type = "Standard_LRS"
+#   # Uncomment this line to delete the OS disk automatically when deleting the VM
+#   delete_os_disk_on_termination = true
+#
+#   # Uncomment this line to delete the data disks automatically when deleting the VM
+#   # delete_data_disks_on_termination = true
+#
+#   storage_image_reference {
+#     id                = var.image_id
+#   }
+#   storage_os_disk {
+#     name              = "${var.component}-dev"
+#     caching           = "ReadWrite"
+#     create_option     = "FromImage"
+#     managed_disk_type = "Standard_LRS"
+#   }
+#   os_profile {
+#     computer_name  = "${var.component}-dev"
+#     admin_username = data.vault_generic_secret.secret.data["ssh_user"]
+#     admin_password = data.vault_generic_secret.secret.data["ssh_password"]
+#   }
+#   os_profile_linux_config {
+#     disable_password_authentication = false
 #   }
 #
-#   source_image_id = var.image_id
-#
-#   # Spot VM specific configurations
-#   priority        = "Spot"
-#   eviction_policy = "Deallocate"
-#   max_bid_price   = -1 # Optional: Set your maximum bid price in USD
 # }
+
+resource "azurerm_linux_virtual_machine" "spot_vm" {
+  name                  = "${var.component}-dev"
+  location              = var.location
+  resource_group_name   = var.resource_group_name
+  network_interface_ids = [azurerm_network_interface.privateip.id]
+  size                = "Standard_D2s_v3"
+  admin_username      = data.vault_generic_secret.secret.data["ssh_user"]
+  admin_password      = data.vault_generic_secret.secret.data["ssh_password"]
+  disable_password_authentication = false
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_id = var.image_id
+
+  # Spot VM specific configurations
+  priority        = "Spot"
+  eviction_policy = "Deallocate"
+  max_bid_price   = -1 # Optional: Set your maximum bid price in USD
+}
 
 resource "null_resource" "ansible" {
   triggers = {
