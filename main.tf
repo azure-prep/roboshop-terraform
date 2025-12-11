@@ -40,12 +40,11 @@ module "application" {
   type = "app"
 }
 
-module "aks" {
-  for_each    = var.aks
-  depends_on  = [module.databases]
-  source      = "./modules/aks"
-  component           = each.key
-  location            = module.resource-rg[each.value["rgname"]].rg_location
-  resource_group_name = module.resource-rg[each.value["rgname"]].rg_name
-}
+# module "aks" {
+#   for_each    = var.aks
+#   source      = "./modules/aks"
+#   component           = each.key
+#   location            = module.resource-rg[each.value["rgname"]].rg_location
+#   resource_group_name = module.resource-rg[each.value["rgname"]].rg_name
+# }
 
