@@ -13,3 +13,5 @@ variable "databases" {
 
 variable "application" {
 }
+variable "aks" {
+}

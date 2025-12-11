@@ -42,3 +42,9 @@ rg_name = {
     rg_location = "Uk West"
   }
 }
+
+aks = {
+  main-dev = {
+
+  }
+}
