@@ -11,3 +11,7 @@ variable "network_security_group_id" {}
 variable "token" {}
 variable "spot" {}
 variable "env" {}
+variable "type" {}
+locals {
+  role_name = var.type == "db" ? var.component : "${var.component}-docker"
+}

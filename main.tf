@@ -20,6 +20,7 @@ module "databases" {
   token = var.token
   spot = "1"
   env = var.env
+  type = "db"
 }
 
 module "application" {
@@ -36,5 +37,6 @@ module "application" {
   token = var.token
   spot = "1"
   env = var.env
+  type = "app"
 }
 
